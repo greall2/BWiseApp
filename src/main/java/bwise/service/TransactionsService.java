@@ -28,4 +28,17 @@ public class TransactionsService {
 		}
 		return transactions;
 	}
+	
+	public Transaction findTransaction(int id) {
+		return transactionRepository.findOne(id);
+		
+	}
+	
+	public void save (Transaction transaction){
+		transactionRepository.save(transaction);
+	}
+	
+	public void delete (int id){
+		transactionRepository.delete(id);
+	}
 }
