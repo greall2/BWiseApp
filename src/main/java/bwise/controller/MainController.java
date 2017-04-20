@@ -1,16 +1,23 @@
 package bwise.controller;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bwise.model.Transaction;
@@ -20,6 +27,9 @@ import bwise.service.TransactionsService;
 
 @Controller
 public class MainController {
+	
+	public static final SimpleDateFormat SDF = new SimpleDateFormat("MM/dd/yyyy");
+	
 	@Autowired
 	private TransactionsService transactionsService;
 	
@@ -27,6 +37,32 @@ public class MainController {
 	@GetMapping("/")
 	public String welcome(HttpServletRequest request){
 		request.setAttribute("mode", "MODE_HOME");
+		return "index";
+	}
+	
+	@RequestMapping (value="/search", method = RequestMethod.POST)
+	public String search(
+			@RequestParam(value="date_from") String date_from, 
+			@RequestParam(value="date_to") String date_to, 
+			Model model){
+		List<Transaction> transactions = transactionsService.findAll();
+		List<Transaction> afterSearch = new ArrayList<>();
+		Date fromDate, toDate;
+		try {
+			 fromDate = SDF.parse(date_from);
+			 toDate = SDF.parse(date_to);
+			 for (Transaction tr: transactions) {
+				 Date dateTr = tr.getDateTransfered();
+				 if (dateTr.before(toDate) && dateTr.after(fromDate)) {
+					 afterSearch.add(tr);
+				 }
+			 }
+			
+		} catch (ParseException e) {
+		}
+	
+		model.addAttribute("transactions", afterSearch);
+		model.addAttribute("mode", "MODE_TRANSACTIONS");
 		return "index";
 	}
 	

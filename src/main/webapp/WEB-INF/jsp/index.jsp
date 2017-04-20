@@ -8,6 +8,27 @@
   <meta name ="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/static/scc/bootstrap.min.css" rel="stylesheet">
 <link href="/static/scc/style.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  
+  $( function() {
+    $( "#date_from" ).datepicker();
+    $( "#date_to" ).datepicker();
+  } );
+  
+  </script>
+  
+  <script type="text/javascript" >
+  function printResultSearch() {
+	  var divToPrint = document.getElementById('table_to_print');
+      newWin = window.open("");
+      newWin.document.write(divToPrint.outerHTML);
+      newWin.print();
+      newWin.close();
+};
+  </script>
 </head>
 
 <style>
@@ -59,11 +80,20 @@
 </c:when>
 <c:when test="${mode == 'MODE_TRANSACTIONS' }">
 <div class="container text-center" id="transDiv">
-  
+
+<!-- Search form -->
+<div id="search_div" style="float: left;">
+<form action="search" method="post">
+    <p>From: <input type="text" name="date_from" id="date_from"/>
+    To: <input type="text" name="date_to" id="date_to" />
+    <button type="submit" class="btn btn-info">Search</button></p>
+    </form>
+</div>
+  <button class="btn btn-primary" onclick="printResultSearch()">Print result</button>
     <h3>My transactions</h3> 
     
     
-     <table class="table table-striped text-left">
+     <table class="table table-striped text-left" id="table_to_print">
     <thead>
       <tr>
         <th>   Transaction Id</th>
@@ -75,14 +105,19 @@
       </tr>
     </thead>
     <tbody>
+    <c:set var="totalSpending" value="${0}" />
      <c:forEach var="transaction" items="${transactions}">
+     
      <tr>
+     
+     
      <td>${transaction.id}</td>
       <td>${transaction.amount}</td>
        <td>${transaction.type}</td>
         <td>${transaction.dateTransfered}</td>
+        
        
-
+<c:set var="totalSpending" value="${totalSpending + transaction.amount}" />
 
 
       <th><a href="update-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-pencil"></spam></a> </th>
@@ -91,9 +126,15 @@
      
      </tr>
      
-     
-     
      </c:forEach>
+     <tr>
+     <td>
+     Total spending:
+     </td>
+     <td>
+      ${totalSpending}
+     </td>
+     </tr>
     </tbody>
   </table>
 </div>

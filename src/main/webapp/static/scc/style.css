@@ -1,3 +1,7 @@
 .invisible-at-start {
 	display: none;
 }
+
+#search_div {
+	float: left;
+}
