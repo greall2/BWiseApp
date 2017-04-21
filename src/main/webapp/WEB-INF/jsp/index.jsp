@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>BWise-Budget Manager</title>
   <meta charset="utf-8">
   <meta name ="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/static/scc/bootstrap.min.css" rel="stylesheet">
@@ -34,35 +34,48 @@
 <style>
 
 .jumbotron { 
- font-family: "Comic Sans MS", cursive, sans-serif;
-    background-color:		#CD6889; 
+font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94; 
     color:#F2F2F2;
 }
 .table {
- background-color:		#FFF0F5; 
-  color:	#8B1C62;
-  text-align: center;
+ background-color:		#F3F1F0; 
+  color:	#077E94;
+  text-align: left;
       padding: 50px 40px;
 	 
   }
   
-   .navbar{
-      background-color: #FFF0F5; 
-    color:	#8B1C62
-	
+  .btn{
+  color:	#077E94	  ;
+   font-family: Arial, Helvetica, sans-serif;
+   
   }
-
+  
+   .navbar{
+      background-color: #F3F1F0; 
+    color:	#077E94	;
+     border-style: none;
+      font-family: Arial, Helvetica, sans-serif;
+     
+  }
+  
+  .nav.navbar-nav li a{
+   color:	#077E94	  ;
+   font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
 </style>
 <body>
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">BWise</a>
+      <a style="color:#077E94;" class="navbar-brand" href="/">BWise</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="new-transaction">New Transactions</a></li>
-      <li><a href="all-transactions">All Transactions</a></li>     
+      <li><a href="new-transaction">Add Spending</a></li>
+      <li><a href="all-transactions">Spending Manager</a></li>     
     </ul>
   </div>
 
@@ -70,106 +83,136 @@
 
 <c:choose>
 <c:when test="${mode == 'MODE_HOME' }">
+ <br>
+  <div class="pull-left">
 <div class="container" id="homeDiv">
   <div class="jumbotron">
-    <h1>BWise</h1> 
-    <p>Transaction manager</p> 
+   <br>
+  
+    <h1 >BWise</h1> 
+    <h2 style="font-family:courier;">Have Your own Spending Tracker</h2> 
+    <p style="font-family:courier;">Be Wise with your budget!</p> 
+     <br>
+     <br>
+    
   </div>
+    </div>
+   <br>
+   <br>
   
 </div>
 </c:when>
 <c:when test="${mode == 'MODE_TRANSACTIONS' }">
-<div class="container text-center" id="transDiv">
+    <br>
+        <br>
+
+<div class="container text-left" id="transDiv">
 
 <!-- Search form -->
 <div id="search_div" style="float: left;">
 <form action="search" method="post">
+<h2 style="font-family:courier;">Search History</h2> 
+<br>
     <p>From: <input type="text" name="date_from" id="date_from"/>
     To: <input type="text" name="date_to" id="date_to" />
-    <button type="submit" class="btn btn-info">Search</button></p>
+    <button style="font-family:courier;" type="submit" class="btn btn-default">Search</button></p>
+    
+    <br>
+     
+        <br>    
     </form>
 </div>
-  <button class="btn btn-primary" onclick="printResultSearch()">Print result</button>
-    <h3>My transactions</h3> 
-    
-    
+        <br>    
+        <br>    
+        <br>    
+   
      <table class="table table-striped text-left" id="table_to_print">
+     
     <thead>
-      <tr>
-        <th>   Transaction Id</th>
-        <th>        Amount</th>
-        <th>            Purpose</th>
-        <th>                 Date</th>
+      <tr>        
+        <th>Amount</th>
+        <th>Spend for:</th>
+        <th> Date</th>
           
      <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
     <c:set var="totalSpending" value="${0}" />
      <c:forEach var="transaction" items="${transactions}">
      
-     <tr>
-     
-     
-     <td>${transaction.id}</td>
-      <td>${transaction.amount}</td>
-       <td>${transaction.type}</td>
-        <td>${transaction.dateTransfered}</td>
+     <tr>     
+         
+      <td style="width: 100px">${transaction.amount}</td>
+       <td style="width: 250px">${transaction.type}</td>
+        <td style="width: 200px">${transaction.dateTransfered}</td>
         
        
 <c:set var="totalSpending" value="${totalSpending + transaction.amount}" />
 
 
-      <th><a href="update-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-pencil"></spam></a> </th>
-     <th><a href="delete-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-trash"></spam></a> </th>
+      <th style="width: 50px"><a href="update-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-pencil"></spam></a> </th>
+     <th style="width: 200px"><a href="delete-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-trash"></spam></a> </th>
      
      
      </tr>
      
      </c:forEach>
-     <tr>
-     <td>
-     Total spending:
-     </td>
-     <td>
-      ${totalSpending}
-     </td>
-     </tr>
+    
     </tbody>
+   
+     <tr>
+     <td><font style=" font-family:courier;" size="6" color="#11007A">Total:</font></td>
+    <td ><font style=" font-family:courier;" size="6.5" color="#11007A" >${totalSpending}</font></td>
+         <td></td>
+         <td></td>
+         <td></td>
+    
+    </tr>
   </table>
+       <br>
+        <button style="font-family:courier;"  class="btn btn-default btn-block"  onclick="printResultSearch()">PRINT REPORT</button>
+  
 </div>
    
+
+    <br>
+    <br>
   </c:when>
 <c:when test="${mode == 'MODE_NEW' ||  mode == 'MODE_UPDATE'}">
-
-
+ <br>
+  <br>  
+    <div class="pull-left">
+  <div class="container text-left"> 
   
-
-
-  
-  <div class="container text-center">
-  <h2>Manage Transaction</h2>
-  <form class="form-horizontal"  method="POST"  action="save-transaction">
+  <form class="form-vertical"  method="POST"  action="save-transaction">
   <input type="hidden" name="id" value= "${transaction.id}">
-    <div class="form-group">
+    <div class="form-group ">
     
-      <label class="control-label col-sm-5">Amount:</label>
-      <input type="number" class="form-control" name="amount" value="${transaction.amount}">
+      <label style="font-family:courier; class="control-label col-sm-7  ">Amount spent</label>
+      <input  type="number" class="form-control" name="amount" value="${transaction.amount}">
           </div>
           
            <div class="form-group">
     
-      <label class="control-label col-sm-4">Type of transaction:</label>
+      <label  style="font-family:courier; class="control-label col-sm-7">FOR?</label>
       <input type="text" class="form-control" name="type" value="${transaction.type}">
           </div>
+           <br>
           
-          <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Save</button>
-      </div>
+           <div class="form-group"> 
+    <div class="pull-left">
+      <button style="font-family:courier;"  type="submit" class="btn btn-default">Submit</button>
     </div>
+  </div>
           
       </form>
+      <br>
+       <br>
+        <br>
+         <br>
+           </div>
+     
       </div>
       </c:when>
       </c:choose>
@@ -177,13 +220,6 @@
     
    
 </nav>
-
-
-
-  
-
-
-
 
 </body>
 </html>
