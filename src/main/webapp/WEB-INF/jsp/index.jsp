@@ -75,7 +75,11 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
     </div>
     <ul class="nav navbar-nav">
       <li><a href="new-transaction">Add Spending</a></li>
-      <li><a href="all-transactions">Spending Manager</a></li>     
+      <li><a href="all-transactions">Spending Manager</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">  
+       <li><a href="login">Login</a></li>   
+      <li><a href="RegisterUser">Register</a></li>     
     </ul>
   </div>
 
@@ -84,8 +88,8 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 <c:choose>
 <c:when test="${mode == 'MODE_HOME' }">
  <br>
-  <div class="pull-left">
-<div class="container" id="homeDiv">
+  <div >
+<div class="container " id="homeDiv">
   <div class="jumbotron">
    <br>
   
