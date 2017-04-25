@@ -52,8 +52,7 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
       <a class="navbar-brand" href="/">BWise</a>
     </div>
     <ul class="nav navbar-nav">
-     <li><a href="login">Login</a></li>  
-      <li><a href="RegisterUser">Register</a></li> 
+     <li><a href="RegisterUser">Register</a></li>  
     </ul>
   </div>
   </nav>

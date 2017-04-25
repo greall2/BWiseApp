@@ -69,27 +69,25 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 </style>
 <body>
 
-<nav class="navbar navbar-inverse">
+
+
+<c:choose>
+<c:when test="${mode == 'MODE_HOME' }">
+ 
+  <div >
+  <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a style="color:#077E94;" class="navbar-brand" href="/">BWise</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="new-transaction">Add Spending</a></li>
-      <li><a href="all-transactions">Spending Manager</a></li>
-      </ul>
+    
       <ul class="nav navbar-nav navbar-right">  
        <li><a href="login">Login</a></li>   
       <li><a href="RegisterUser">Register</a></li>     
     </ul>
   </div>
-
-
-
-<c:choose>
-<c:when test="${mode == 'MODE_HOME' }">
- <br>
-  <div >
+</nav>
+  
 <div class="container " id="homeDiv">
   <div class="jumbotron">
    <br>
@@ -108,9 +106,21 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 </div>
 </c:when>
 <c:when test="${mode == 'MODE_TRANSACTIONS' }">
-    <br>
-        <br>
-
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a style="color:#077E94;" class="navbar-brand" href="/">BWise</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="new-transaction">Add Spending</a></li>
+      <li><a href="all-transactions">Spending Manager</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">  
+       <li><a href="logout">Logout</a></li>   
+         
+    </ul>
+  </div>
+</nav>
 <div class="container text-left" id="transDiv">
 
 <!-- Search form -->
@@ -185,8 +195,21 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
     <br>
   </c:when>
 <c:when test="${mode == 'MODE_NEW' ||  mode == 'MODE_UPDATE'}">
- <br>
-  <br>  
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a style="color:#077E94;" class="navbar-brand" href="/">BWise</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="new-transaction">Add Spending</a></li>
+      <li><a href="all-transactions">Spending Manager</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">  
+             <li><a href="logout">Logout</a></li>   
+
+    </ul>
+  </div>
+</nav> 
     <div class="pull-left">
   <div class="container text-left"> 
   
@@ -224,7 +247,7 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
      
     
    
-</nav>
+
 
 </body>
 </html>

@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import bwise.model.User;
+import bwise.service.TransactionsService;
 import bwise.service.UserService;
 
 @Controller
@@ -18,6 +19,10 @@ public class UserController {
 
 	@Autowired
 	private UserService us;
+	
+	@Autowired
+	private TransactionsService transactionsService;
+	
 	
 	@RequestMapping(value = "/RegisterUser", method = RequestMethod.GET)
 	public String getUser(@ModelAttribute("User1") User u, HttpServletRequest h)
@@ -82,9 +87,16 @@ public class UserController {
 	
 	@RequestMapping(value ="/login", method = RequestMethod.POST)
 	public String loginError(/*@ModelAttribute("User1") User user,*/HttpServletRequest h) {
-		
+		h.setAttribute("transactions", transactionsService.findAll());
 		h.setAttribute("mode", "MODE_TRANSACTIONS");
 		return "index";
 	}
 	
+	
+	@RequestMapping(value ="/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest h) {
+		h.setAttribute("mode", "MODE_HOME");
+		return "index";
+	}
+		
 }

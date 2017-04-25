@@ -37,11 +37,16 @@ public class TransactionsService {
 		
 	}
 	
-	public void save (Transaction transaction){
-		transactionRepository.save(transaction);
-	}
+
 	
 	public void delete (int id){
 		transactionRepository.delete(id);
+	}
+
+
+	public void save(Transaction transaction) {
+		// TODO Auto-generated method stub
+		transactionRepository.save(transaction);
+
 	}
 }
