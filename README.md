@@ -62,6 +62,10 @@ The we would like to add features like graph. These graphs would be generated ba
 ## Conclusion:
 Overall, throughout the development of this project, we both feel we have learned a lot with working with Spring Boot and the MySql database. However, we do feel that there is a lot more about these technologies, especially Spring that we could learn and gain experience in. 
 
+## Demo Video
+
+link to BWise Demo : https://www.youtube.com/watch?v=8M5AX1tlLGg
+
 
 ## References:
 
@@ -74,6 +78,4 @@ Overall, throughout the development of this project, we both feel we have learne
 
 
 
-```sh
-link to BWise Demo : https://www.youtube.com/watch?v=8M5AX1tlLGg
 ```
