@@ -19,7 +19,8 @@
   } );
   
   </script>
-  
+  <!-- Convert to PDF and print function -->
+  <!--  Adapted from http://stackoverflow.com/questions/43444279/css-not-being-applied-to-print -->
   <script type="text/javascript" >
   function printResultSearch() {
 	  var divToPrint = document.getElementById('table_to_print');

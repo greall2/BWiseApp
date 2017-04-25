@@ -27,7 +27,7 @@ import bwise.service.TransactionsService;
 
 @Controller
 public class MainController {
-	
+	//setting date format
 	public static final SimpleDateFormat SDF = new SimpleDateFormat("MM/dd/yyyy");
 	
 	@Autowired

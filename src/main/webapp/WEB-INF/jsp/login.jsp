@@ -60,12 +60,12 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
   
   
      <div class="container text-center">
-     <form th:action="@{/login}" method="post">
+     <form action="/login" method="post">
          <div>
-         <label> User Name : <input type="text" name="username"/> </label>
+         <label> User Name : <input path="username" type="text" name="username"/> </label>
          </div>
          <div>
-         <label> Password: <input type="password" name="password"/> </label>
+         <label> Password: <input path="password" type="password" name="password"/> </label>
          </div>
          <div><input type="submit" value="Sign In"/>    </div>
      </form>

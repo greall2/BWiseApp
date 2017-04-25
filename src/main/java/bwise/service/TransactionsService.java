@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import bwise.dao.TransactionRepository;
@@ -13,8 +14,10 @@ import bwise.model.Transaction;
 @Service
 @Transactional
 public class TransactionsService {
-	private final TransactionRepository transactionRepository;
-
+	
+	private TransactionRepository transactionRepository;
+	
+	//public TransactionsService(){}
 	public TransactionsService(TransactionRepository transactionrepository) {
 		
 		this.transactionRepository = transactionrepository;
