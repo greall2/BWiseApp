@@ -33,13 +33,14 @@ public class MainController {
 	@Autowired
 	private TransactionsService transactionsService;
 	
-	
+	//Welcome Page Navigates to Home section of index
 	@GetMapping("/")
 	public String welcome(HttpServletRequest request){
 		request.setAttribute("mode", "MODE_HOME");
 		return "index";
 	}
 	
+	//Date search - getting transaction results of particular dates entered by user from database
 	@RequestMapping (value="/search", method = RequestMethod.POST)
 	public String search(
 			@RequestParam(value="date_from") String date_from, 
@@ -66,6 +67,7 @@ public class MainController {
 		return "index";
 	}
 	
+	//Getting all transactions from the database and listing them in transactions section of index
 	@GetMapping("/all-transactions")
 	public String allTransactions(HttpServletRequest request){
 		request.setAttribute("transactions", transactionsService.findAll());
@@ -73,6 +75,7 @@ public class MainController {
 		return "index";
 	}
 	
+	//Mapping to add spendings pages of application
 	@GetMapping("/new-transaction")
 	public String newTransaction(HttpServletRequest request){
 		
@@ -80,6 +83,7 @@ public class MainController {
 		return "index";
 	}
 	
+	//saving the new transaction to database and displaying table of all transactions
 	@PostMapping("/save-transaction")
 	public String saveTransaction(@ModelAttribute Transaction transaction, BindingResult bindingResult, HttpServletRequest request){
 		transaction.setDateTransfered(new Date());
@@ -89,14 +93,15 @@ public class MainController {
 		return "index";
 	}
 	
+	//Editing and updating a transaction 
 	@GetMapping("/update-transaction")
-	
 	public String updateTransaction(@RequestParam int id, HttpServletRequest request){
 		request.setAttribute("transactions", transactionsService.findTransaction(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		return "index";
 	}
 	
+	//Deleting a transaction from database and table
 	@GetMapping("/delete-transaction")
 	public String deleteTransaction(@RequestParam int id, HttpServletRequest request){
 		transactionsService.delete(id);

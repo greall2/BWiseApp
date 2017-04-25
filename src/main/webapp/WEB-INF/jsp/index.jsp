@@ -12,13 +12,14 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  
+  //Function of date selection for the search
   $( function() {
     $( "#date_from" ).datepicker();
     $( "#date_to" ).datepicker();
   } );
   
   </script>
+  
   <!-- Convert to PDF and print function -->
   <!--  Adapted from http://stackoverflow.com/questions/43444279/css-not-being-applied-to-print -->
   <script type="text/javascript" >
@@ -64,13 +65,14 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
    color:	#077E94	  ;
    font-family: Arial, Helvetica, sans-serif;
   }
+ 
   
   
 </style>
 <body>
 
 
-
+<!-- HOMEPAGE DISPLAY -->
 <c:choose>
 <c:when test="${mode == 'MODE_HOME' }">
  
@@ -104,6 +106,10 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
    <br>
   
 </div>
+
+
+<!-- Transaction Table display along with Date Search -->
+
 </c:when>
 <c:when test="${mode == 'MODE_TRANSACTIONS' }">
     <nav class="navbar navbar-inverse">
@@ -124,6 +130,7 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 <div class="container text-left" id="transDiv">
 
 <!-- Search form -->
+<!-- Searching transactions based on date -->
 <div id="search_div" style="float: left;">
 <form action="search" method="post">
 <h2 style="font-family:courier;">Search History</h2> 
@@ -139,8 +146,9 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 </div>
         <br>    
         <br>    
-        <br>    
-   
+        <br> 
+           
+   <!-- Transaction Table -->
      <table class="table table-striped text-left" id="table_to_print">
      
     <thead>
@@ -165,7 +173,7 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
        
 <c:set var="totalSpending" value="${totalSpending + transaction.amount}" />
 
-
+<!-- UPDATE & DELETE Buttons -->
       <th style="width: 50px"><a href="update-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-pencil"></spam></a> </th>
      <th style="width: 200px"><a href="delete-transaction?id=${transaction.id}"><spam class="glyphicon glyphicon-trash"></spam></a> </th>
      
@@ -186,6 +194,7 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
     </tr>
   </table>
        <br>
+       <!-- Convert to PDF Button -->
         <button style="font-family:courier;"  class="btn btn-default btn-block"  onclick="printResultSearch()">PRINT REPORT</button>
   
 </div>
@@ -193,6 +202,8 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
 
     <br>
     <br>
+    
+    <!--  Adding New Transaction  -->
   </c:when>
 <c:when test="${mode == 'MODE_NEW' ||  mode == 'MODE_UPDATE'}">
  <nav class="navbar navbar-inverse">
@@ -245,9 +256,6 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
       </c:when>
       </c:choose>
      
-    
-   
-
-
+ 
 </body>
 </html>

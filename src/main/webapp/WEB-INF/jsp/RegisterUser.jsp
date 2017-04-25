@@ -59,6 +59,9 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
   
   <div></div>
   <div>
+  
+  <!-- Form for Registration -->
+  
   <div class="container text-center" id="regDiv">
   
 	<form:form modelAttribute="User1">

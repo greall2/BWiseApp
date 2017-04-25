@@ -52,17 +52,19 @@ font-family: Arial, Helvetica, sans-serif;    background-color:		#077E94;
       <a class="navbar-brand" href="/">BWise</a>
     </div>
     <ul class="nav navbar-nav">
-     <li><a href="login">Login</a></li>
-      <li><a href="RegisterUser">Register</a></li>    
+     <li><a href="login">Login</a></li>   
     </ul>
   </div>
   </nav>
   
-	
-	<h1>Welcome ${User1.firstName} ${User1.lastName} to Bwise!</h1>
+  
+  <!-- Retrieving the information which has just been passed through the 
+  		registration form and been saved to database and printing it out -->
+	<center>
+	<h1>Welcome <b><i>${User1.firstName} ${User1.lastName} </i></b>to Bwise!</h1>
 <div></div>
-<h2>Thank you for creating an account with us using the username: ${User1.username} </h2>
-	
+<h2>Thank you for creating an account with us using the username:<i><b> ${User1.username}</b></i> </h2>
+	</center>
 	
 	
 	

@@ -8,7 +8,5 @@ import bwise.model.User;
 @Repository
 public interface UserInterface extends CrudRepository<User, Long>  {
 
-
-
 	
 }

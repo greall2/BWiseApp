@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+//referencing table n database
 @Entity(name="t_transactions")
 public class Transaction implements Serializable {
 	@Id
@@ -22,16 +23,18 @@ public class Transaction implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTransfered;
 	
+	//null constructor
 	public Transaction (){}
 	
-	
-	
+	//
 	public Transaction(int amount, String type, Date dateTransfered) {
 		super();
 		this.amount = amount;
 		this.type = type;
 		this.dateTransfered = dateTransfered;
 	}
+	
+	//Getters and Setters
 	public int getId() {
 		return id;
 	}

@@ -23,25 +23,26 @@ public class UserController {
 	@Autowired
 	private TransactionsService transactionsService;
 	
-	
+	//Retrieving users registrations details
 	@RequestMapping(value = "/RegisterUser", method = RequestMethod.GET)
 	public String getUser(@ModelAttribute("User1") User u, HttpServletRequest h)
 	{
-		
 		System.out.println("HTTP Request = " + h.getMethod());
 			return "RegisterUser";
 	}
 	
+	//Storing the Users registration detains 
 	@RequestMapping(value = "/RegisterUser", method=RequestMethod.POST)
 	public String postUser(@ModelAttribute("User1") User u, HttpServletRequest h) {
 		
-		System.out.println("HTTP Request abcd = " + u.getUsername());
+		System.out.println("HTTP Request user = " + u.getUsername());
 		
 		us.save(u);
 		
 		return "showUser";
 	}
 
+	//Attempting Loging - Not fully Working
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public String loginPage(HttpServletRequest req) {
 		
@@ -70,7 +71,7 @@ public class UserController {
 				}//inner if
 				else{
 					// return something to tell the user the login failed
-					System.out.println("login failed:(");
+					System.out.println("login failed");
 				}
 			}//outer if
 			
@@ -85,6 +86,7 @@ public class UserController {
 		
 	}
 	
+	//Displaying transactions table when logged in 
 	@RequestMapping(value ="/login", method = RequestMethod.POST)
 	public String loginError(/*@ModelAttribute("User1") User user,*/HttpServletRequest h) {
 		h.setAttribute("transactions", transactionsService.findAll());
@@ -92,7 +94,7 @@ public class UserController {
 		return "index";
 	}
 	
-	
+	//Navigating to home page to logout 
 	@RequestMapping(value ="/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest h) {
 		h.setAttribute("mode", "MODE_HOME");
